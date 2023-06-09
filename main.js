@@ -81,7 +81,7 @@ let shipModel;
 
 const loader = new GLTFLoader();
 loader.load(
-  "../models/shipgltf/scene.gltf",
+  "/shipgltf/ship.gltf",
   function (gltf) {
     gltf.scene.position.setX(30);
     gltf.scene.position.setZ(-500);
