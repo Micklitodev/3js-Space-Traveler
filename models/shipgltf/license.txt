@@ -1,0 +1,11 @@
+Model Information:
+* title:	Multi Universe Space Ship 3D Model
+* source:	https://sketchfab.com/3d-models/multi-universe-space-ship-3d-model-42a2cbc97d9c489b80c6533c44294d55
+* author:	Dinendra Neyo (https://sketchfab.com/NeyoZ)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Multi Universe Space Ship 3D Model" (https://sketchfab.com/3d-models/multi-universe-space-ship-3d-model-42a2cbc97d9c489b80c6533c44294d55) by Dinendra Neyo (https://sketchfab.com/NeyoZ) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

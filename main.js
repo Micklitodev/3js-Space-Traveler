@@ -1,6 +1,7 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const scene = new THREE.Scene();
 
@@ -76,6 +77,25 @@ const planet = new THREE.Mesh(
 
 scene.add(planet);
 
+let shipModel;
+
+const loader = new GLTFLoader();
+loader.load(
+  "../models/shipgltf/scene.gltf",
+  function (gltf) {
+    gltf.scene.position.setX(30);
+    gltf.scene.position.setZ(-500);
+    shipModel = gltf.scene;
+    scene.add(gltf.scene);
+  },
+  (xhr) => {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  (error) => {
+    console.log(error);
+  }
+);
+
 // planet.position.setZ(30);
 // planet.position.setX(-10);
 
@@ -95,6 +115,11 @@ document.body.onscroll = moveCamera;
 
 function animate() {
   requestAnimationFrame(animate);
+
+  if (shipModel) {
+    shipModel.position.y += 0.01;
+    shipModel.position.z += 0.7;
+  }
 
   camera.position.x += 0.01;
 
