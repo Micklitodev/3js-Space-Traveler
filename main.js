@@ -64,7 +64,7 @@ Array(200).fill().forEach(createStar);
 const spaceTxt = new THREE.TextureLoader().load("/purplespace.jpg");
 scene.background = spaceTxt;
 
-const planetTxt = new THREE.TextureLoader().load("/planettxt.jpg");
+const planetTxt = new THREE.TextureLoader().load("/test.gif");
 // const normalPlanetTxt = new THREE.TextureLoader().load('../public/normal.jpg')
 
 const planet = new THREE.Mesh(
