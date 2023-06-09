@@ -18,11 +18,11 @@ Simple 3js, That uses geometrys and gltfs, textures, to render a 3d space envior
 
 ## Link
 
-[Click Here](/pending) to go to the repo link.
+[Click Here](https://3js-practice-6adg9tozt-micklitodev.vercel.app/) to go to the live link.
 
 ## Screenshot
 
-![image](/pending)
+![image](/assets/3jspss.png)
 
 ## Installation
 
