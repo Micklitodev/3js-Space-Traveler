@@ -7,22 +7,64 @@
     <title>3js-Portfolio</title>
   </head>
   <body>
+    <style>
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <div
+      id="loader"
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 24px;
+      "
+    >
+      <h1 style="margin-top: 30%; color: #3498db">Warming Up!</h1>
+      <div
+        class="loading-screen"
+        style="
+          position: absolute;
+          display: grid;
+          z-index: 10;
+          border: 16px solid #f3f3f3;
+          border-top: 16px solid #3498db;
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+        "
+      ></div>
+    </div>
+
     <canvas id="bg"></canvas>
-<main>
-  w - forward 
-  <br />
-  a - left 
-  <br />
-  d - right
-  <br />
-  s - down 
-  <br />
-  q - boost
-  <br />
-  space - up 
-</main>
-
-
+    <main id="instructions" style="display: none">
+      w - forward
+      <br />
+      a - left
+      <br />
+      d - right
+      <br />
+      s - down
+      <br />
+      q - boost
+      <br />
+      space - up
+    </main>
 
     <script type="module" src="/main.js"></script>
   </body>

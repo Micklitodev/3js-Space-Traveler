@@ -3,6 +3,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+const canvasel = document.getElementById("bg");
+const loadingScreen = document.getElementById("loader");
+const instructions = document.getElementById("instructions");
+
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
@@ -126,6 +130,9 @@ loader.load(
     scene.add(gltf.scene);
   },
   (xhr) => {
+    loadingScreen.style.display = "none";
+    canvasel.style.display = "block";
+    instructions.style.display = "block";
     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
   },
   (error) => {
