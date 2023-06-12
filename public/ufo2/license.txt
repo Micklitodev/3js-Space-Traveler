@@ -1,0 +1,11 @@
+Model Information:
+* title:	BobLazarSportModel
+* source:	https://sketchfab.com/3d-models/boblazarsportmodel-016c62ebd27f49a58fc2d391145e1ce0
+* author:	helloworld123 (https://sketchfab.com/helloworld123)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "BobLazarSportModel" (https://sketchfab.com/3d-models/boblazarsportmodel-016c62ebd27f49a58fc2d391145e1ce0) by helloworld123 (https://sketchfab.com/helloworld123) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

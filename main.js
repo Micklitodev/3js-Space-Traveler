@@ -9,7 +9,7 @@ const camera = new THREE.PerspectiveCamera(
   80,
   window.innerWidth / window.innerHeight,
   0.1,
-  1000
+  500
 );
 
 const renderer = new THREE.WebGLRenderer({
@@ -19,18 +19,17 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-camera.position.setZ(25);
-
 const torustxt = new THREE.TextureLoader().load("/sun.jpeg");
 
-const geometry = new THREE.TorusGeometry(13, 1.8, 2, 100);
+const geometry = new THREE.TorusGeometry(50, 1.8, 2, 100);
 const material = new THREE.MeshStandardMaterial({
   map: torustxt,
 });
 
 const torus = new THREE.Mesh(geometry, material);
-
-torus.rotation.x = 1.7;
+torus.position.z += -300;
+torus.position.x += 200;
+torus.rotation.x = +1.3;
 
 scene.add(torus);
 
@@ -45,7 +44,7 @@ scene.add(pointLight, ambientLight);
 
 // scene.add(lightHelper, gridHelper)
 
-const controls = new OrbitControls(camera, renderer.domElement);
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 const createStar = () => {
   const geometry = new THREE.SphereGeometry(0.2, 23, 23);
@@ -54,38 +53,76 @@ const createStar = () => {
 
   const [x, y, z] = Array(3)
     .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+    .map(() => THREE.MathUtils.randFloatSpread(2000));
 
   star.position.set(x, y, z);
   scene.add(star);
 };
 
-Array(200).fill().forEach(createStar);
+Array(30000).fill().forEach(createStar);
 
 const spaceTxt = new THREE.TextureLoader().load("/purplespace.jpg");
-scene.background = spaceTxt;
+//scene.background = spaceTxt;
 
 const planetTxt = new THREE.TextureLoader().load("/test.gif");
 // const normalPlanetTxt = new THREE.TextureLoader().load('../public/normal.jpg')
 
 const planet = new THREE.Mesh(
-  new THREE.SphereGeometry(7, 32, 32),
+  new THREE.SphereGeometry(28, 32, 32),
   new THREE.MeshStandardMaterial({
     map: planetTxt,
   })
 );
 
+planet.position.z += -300;
+planet.position.x += 200;
 scene.add(planet);
+
+const planet2 = new THREE.Mesh(
+  new THREE.SphereGeometry(13, 32, 32),
+  new THREE.MeshStandardMaterial({
+    color: "red",
+  })
+);
+
+planet2.position.z += -200;
+planet2.position.x += -400;
+planet2.position.y += -300;
+scene.add(planet2);
+
+const planet3 = new THREE.Mesh(
+  new THREE.SphereGeometry(28, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: planetTxt,
+  })
+);
+
+planet3.position.z += 100;
+planet3.position.x += -200;
+planet2.position.y += -100;
+scene.add(planet3);
+
+const planet4 = new THREE.Mesh(
+  new THREE.SphereGeometry(28, 32, 32),
+  new THREE.MeshStandardMaterial({
+    map: planetTxt,
+  })
+);
+
+planet4.position.z += 250;
+planet4.position.x += 600;
+planet2.position.y += 300;
+scene.add(planet4);
 
 let shipModel;
 
 const loader = new GLTFLoader();
 loader.load(
-  "/shipgltf/ship.gltf",
+  "/ufo2/scene.gltf",
   function (gltf) {
-    gltf.scene.position.setX(30);
-    gltf.scene.position.setZ(-500);
     shipModel = gltf.scene;
+    shipModel.position.y += 1;
+    shipModel.scale.set(1, 1, 1);
     scene.add(gltf.scene);
   },
   (xhr) => {
@@ -113,17 +150,59 @@ function moveCamera() {
 
 document.body.onscroll = moveCamera;
 
+const shipRotationSpeed = 0.02;
+const keyState = {};
+
+document.addEventListener("keydown", (event) => {
+  keyState[event.code] = true;
+});
+
+let shipSpeed = -0.8;
+
+document.addEventListener("keyup", (event) => {
+  keyState[event.code] = false;
+  shipSpeed = -0.8;
+});
+
 function animate() {
   requestAnimationFrame(animate);
 
   if (shipModel) {
-    shipModel.position.y += 0.01;
-    shipModel.position.z += 0.7;
+    if (keyState["KeyA"]) {
+      shipModel.rotation.y += shipRotationSpeed;
+    }
+    if (keyState["KeyD"]) {
+      shipModel.rotation.y -= shipRotationSpeed;
+    }
+    if (keyState["KeyW"]) {
+      var moveDirection = new THREE.Vector3(0, 0, shipSpeed);
+      moveDirection.applyQuaternion(shipModel.quaternion);
+      shipModel.position.add(moveDirection);
+    }
+    if (keyState["KeyS"]) {
+      var moveDirection = new THREE.Vector3(0, -1, 0);
+      moveDirection.applyQuaternion(shipModel.quaternion);
+      shipModel.position.add(moveDirection);
+    }
+    if (keyState["KeyQ"]) {
+      shipSpeed = -2;
+    }
+    if (keyState["Space"]) {
+      var moveDirection = new THREE.Vector3(0, 1, 0);
+      moveDirection.applyQuaternion(shipModel.quaternion);
+      shipModel.position.add(moveDirection);
+    }
+
+    var cameraOffset = new THREE.Vector3(0, 0, 15);
+    var cameraRelativePosition = cameraOffset.applyQuaternion(
+      shipModel.quaternion
+    );
+    camera.position.copy(shipModel.position).add(cameraRelativePosition);
+
+    camera.lookAt(shipModel.position);
   }
 
-  camera.position.x += 0.01;
-
-  controls.update();
+  planet.rotation.y += 0.002;
 
   renderer.render(scene, camera);
 }

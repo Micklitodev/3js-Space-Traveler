@@ -56,19 +56,16 @@ name with a short description of what the contact pertains to. Thank you!
 ## Credits
 
 Model Information:
-
-- title: Multi Universe Space Ship 3D Model
-- source: https://sketchfab.com/3d-models/multi-universe-space-ship-3d-model-42a2cbc97d9c489b80c6533c44294d55
-- author: Dinendra Neyo (https://sketchfab.com/NeyoZ)
+* title:	BobLazarSportModel
+* source:	https://sketchfab.com/3d-models/boblazarsportmodel-016c62ebd27f49a58fc2d391145e1ce0
+* author:	helloworld123 (https://sketchfab.com/helloworld123)
 
 Model License:
-
-- license type: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-- requirements: Author must be credited. Commercial use is allowed.
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "Multi Universe Space Ship 3D Model" (https://sketchfab.com/3d-models/multi-universe-space-ship-3d-model-42a2cbc97d9c489b80c6533c44294d55) by Dinendra Neyo (https://sketchfab.com/NeyoZ) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-
+This work is based on "BobLazarSportModel" (https://sketchfab.com/3d-models/boblazarsportmodel-016c62ebd27f49a58fc2d391145e1ce0) by helloworld123 (https://sketchfab.com/helloworld123) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 ## License
 
 MIT [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
