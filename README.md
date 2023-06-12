@@ -18,7 +18,7 @@ Simple 3js, That uses geometrys and gltfs, textures, to render a 3d space envior
 
 ## Link
 
-[Click Here](https://3js-practice-6adg9tozt-micklitodev.vercel.app/) to go to the live link.
+[Click Here](https://3js-practice.vercel.app/) to go to the live link.
 
 ## Screenshot
 
@@ -30,11 +30,10 @@ To install simply fork the repo, and clone down to your local machine. Then in t
 
 ## Usage
 
-The package is intended to be the setup for a 3js portfolio, Webpage.
+To use please see flight instructions on the main screen on deployed application. 
 
 ## Contributions
 
-How to contribute?:
 fork the repo and clone down to your local machine. Once you have the latest version of the repo you can add or make changes then submit a pull request for your changes. Please use best practices as well as proper naming conventions and comments depicting what the code segements function is. Finally in the body of your pull request please explain why these changes you were necissary and if it is a bug what steps can be completed to reproduce this bug. If these guidelines are not met, pull requests will not be reviewed or accepted.
 
 ## Tests
