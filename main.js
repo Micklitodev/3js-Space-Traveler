@@ -1,8 +1,8 @@
 import "./style.css";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+let time = 0;
 const canvasel = document.getElementById("bg");
 const loadingScreen = document.getElementById("loader");
 const instructions = document.getElementById("instructions");
@@ -26,11 +26,45 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const torustxt = new THREE.TextureLoader().load("/sun.jpeg");
 
 const geometry = new THREE.TorusGeometry(50, 1.8, 2, 100);
-const material = new THREE.MeshStandardMaterial({
-  map: torustxt,
+
+const rippleShader = new THREE.ShaderMaterial({
+  uniforms: {
+    time: { value: 0.5 },
+    torustxt: { value: torustxt },
+  },
+  vertexShader: `
+    uniform float time;
+    varying vec2 vUv;
+
+    void main() {
+      float displacement = sin(time * 10.0) * 0.1;
+
+      vec3 newPosition = position + normal * displacement;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+
+      vUv = uv;
+    }
+  `,
+  fragmentShader: `
+    uniform float time;
+    uniform sampler2D torustxt; 
+    varying vec2 vUv;
+
+    void main() {
+
+      float ripple = sin(time * 2.0) * 0.1;
+
+      vec4 textureColor = texture2D(torustxt, vUv);
+
+      vec3 color = textureColor.rgb + vec3(ripple);
+
+      gl_FragColor = vec4(color, textureColor.a);
+    }
+  `,
 });
 
-const torus = new THREE.Mesh(geometry, material);
+const torus = new THREE.Mesh(geometry, rippleShader);
 torus.position.z += -300;
 torus.position.x += 200;
 torus.rotation.x = +1.3;
@@ -173,6 +207,10 @@ document.addEventListener("keyup", (event) => {
 
 function animate() {
   requestAnimationFrame(animate);
+
+  time += 0.01; 
+
+  rippleShader.uniforms.time.value = time;
 
   if (shipModel) {
     if (keyState["KeyA"]) {
